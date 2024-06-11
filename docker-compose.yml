@@ -1,0 +1,26 @@
+version: "3"
+services:
+  frontend:
+    build: ./web
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./web:/app
+    command: npm start
+
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend:/app
+    command: go run main.go
+
+  db:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: myapp
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
