@@ -1,5 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronDown,
+  faChevronUp,
+  faLink,
+  faShareAlt,
+} from "@fortawesome/free-solid-svg-icons";
 
 const NewsItemContainer = styled.div`
   background-color: #282828;
@@ -10,8 +17,9 @@ const NewsItemContainer = styled.div`
   flex-direction: column;
   cursor: pointer;
   transition: max-height 0.3s ease-out, padding 0.3s ease-out;
-  max-height: ${({ isExpanded }) => (isExpanded ? "1000px" : "100px")};
+  max-height: ${({ $isExpanded }) => ($isExpanded ? "1000px" : "100px")};
   overflow: hidden;
+  position: relative;
 `;
 
 const NewsTitle = styled.h3`
@@ -51,6 +59,14 @@ const NewsImage = styled.img`
   margin-top: 10px;
 `;
 
+const IconsContainer = styled.div`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  gap: 10px;
+`;
+
 const NewsItem = ({
   id,
   title,
@@ -61,9 +77,21 @@ const NewsItem = ({
   image,
   isExpanded,
   onExpand,
+  link,
 }) => {
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: title,
+        url: link,
+      });
+    } else {
+      alert("Share feature is not supported in your browser.");
+    }
+  };
+
   return (
-    <NewsItemContainer onClick={() => onExpand(id)} isExpanded={isExpanded}>
+    <NewsItemContainer onClick={() => onExpand(id)} $isExpanded={isExpanded}>
       <NewsTitle>{title}</NewsTitle>
       <NewsDetails>
         <div>{date}</div>
@@ -80,6 +108,23 @@ const NewsItem = ({
           <NewsImage src={image} alt={title} />
         </>
       )}
+      <IconsContainer>
+        <FontAwesomeIcon icon={isExpanded ? faChevronUp : faChevronDown} />
+        <FontAwesomeIcon
+          icon={faLink}
+          onClick={(e) => {
+            e.stopPropagation();
+            window.open(link, "_blank");
+          }}
+        />
+        <FontAwesomeIcon
+          icon={faShareAlt}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleShare();
+          }}
+        />
+      </IconsContainer>
     </NewsItemContainer>
   );
 };

@@ -20,7 +20,7 @@ const NewsList = styled.div`
 const NewsItem = styled.div`
   margin-bottom: 10px;
   cursor: pointer;
-  background-color: ${({ isActive }) => (isActive ? "#444" : "transparent")};
+  background-color: ${({ $isActive }) => ($isActive ? "#444" : "transparent")};
   padding: 5px;
   border-radius: 3px;
   &:hover {
@@ -55,7 +55,7 @@ const Sidebar = ({
           <NewsItem
             ref={(el) => (sidebarRefs.current[index] = el)}
             key={item.id}
-            isActive={item.id === expandedNewsId}
+            $isActive={item.id === expandedNewsId}
             onClick={() => onExpand(item.id)}
           >
             {item.title}

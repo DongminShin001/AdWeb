@@ -44,7 +44,7 @@ const MainContent = ({
   return (
     <MainContentContainer ref={mainContentRef}>
       <NewsSection>
-        <SectionTitle>Latest News</SectionTitle>
+        <SectionTitle>Latest Items</SectionTitle>
         {news.map((item, index) => (
           <div ref={(el) => (newsRefs.current[index] = el)} key={item.id}>
             <NewsItem

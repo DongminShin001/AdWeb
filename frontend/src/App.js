@@ -26,6 +26,7 @@ const news = [
     tags: ["US Bonds", "US Indexes", "USD"],
     content: "Detailed information about the 뉴욕 연준 소비자 기대 설문조사...",
     image: "https://via.placeholder.com/600x400",
+    link: "https://financialjuice.com/article/1",
   },
   {
     id: "2",
@@ -35,6 +36,7 @@ const news = [
     tags: ["Company News", "Stocks"],
     content: "Detailed information about CMS Energy 이사 주식 매각...",
     image: "https://via.placeholder.com/600x400",
+    link: "https://investing.com/article/2",
   },
   {
     id: "3",
@@ -44,7 +46,9 @@ const news = [
     tags: ["Dividends", "Corporate Actions"],
     content: "Detailed information about 아메리칸스코퍼레이션 배당기일 조정...",
     image: "https://via.placeholder.com/600x400",
+    link: "https://investing.com/article/3",
   },
+  // ... additional news items
 ];
 
 const additionalNews = Array.from({ length: 70 }, (_, i) => ({
