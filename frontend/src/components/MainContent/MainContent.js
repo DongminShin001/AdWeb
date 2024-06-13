@@ -22,31 +22,27 @@ const SectionTitle = styled.h2`
   color: #ff5e62;
 `;
 
-const MainContent = ({
-  news,
-  expandedNewsId,
-  onExpand,
-  newsRefs,
-  mainContentRef,
-}) => {
+const MainContent = ({ news, expandedNewsId, onExpand, refs }) => {
   useEffect(() => {
-    if (expandedNewsId && mainContentRef.current) {
-      const index = news.findIndex((item) => item.id === expandedNewsId);
-      if (index !== -1 && newsRefs.current[index]) {
-        newsRefs.current[index].scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
+    if (expandedNewsId) {
+      const ref = refs.current.main[expandedNewsId];
+      if (ref) {
+        setTimeout(() => {
+          ref.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }, 100);
       }
     }
-  }, [expandedNewsId, news, newsRefs, mainContentRef]);
+  }, [expandedNewsId, refs]);
 
   return (
-    <MainContentContainer ref={mainContentRef}>
+    <MainContentContainer>
       <NewsSection>
-        <SectionTitle>Latest Items</SectionTitle>
-        {news.map((item, index) => (
-          <div ref={(el) => (newsRefs.current[index] = el)} key={item.id}>
+        <SectionTitle>Latest News</SectionTitle>
+        {news.map((item) => (
+          <div ref={(el) => (refs.current.main[item.id] = el)} key={item.id}>
             <NewsItem
               {...item}
               isExpanded={item.id === expandedNewsId}

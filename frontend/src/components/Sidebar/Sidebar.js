@@ -17,7 +17,7 @@ const NewsList = styled.div`
   flex-direction: column;
 `;
 
-const NewsItem = styled.div`
+const NewsItemContainer = styled.div`
   margin-bottom: 10px;
   cursor: pointer;
   background-color: ${({ $isActive }) => ($isActive ? "#444" : "transparent")};
@@ -28,38 +28,34 @@ const NewsItem = styled.div`
   }
 `;
 
-const Sidebar = ({
-  news,
-  onExpand,
-  expandedNewsId,
-  sidebarRef,
-  sidebarRefs,
-}) => {
+const Sidebar = ({ news, onExpand, expandedNewsId, refs }) => {
   useEffect(() => {
-    const index = news.findIndex((item) => item.id === expandedNewsId);
-    if (index !== -1 && sidebarRef.current) {
-      if (sidebarRefs.current[index]) {
-        sidebarRefs.current[index].scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
+    if (expandedNewsId) {
+      const ref = refs.current.sidebar[expandedNewsId];
+      if (ref) {
+        setTimeout(() => {
+          ref.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }, 100);
       }
     }
-  }, [expandedNewsId, news, sidebarRef, sidebarRefs]);
+  }, [expandedNewsId, refs]);
 
   return (
-    <SidebarContainer ref={sidebarRef}>
+    <SidebarContainer>
       <h2>이슈 캘린더</h2>
       <NewsList>
-        {news.map((item, index) => (
-          <NewsItem
-            ref={(el) => (sidebarRefs.current[index] = el)}
+        {news.map((item) => (
+          <NewsItemContainer
+            ref={(el) => (refs.current.sidebar[item.id] = el)}
             key={item.id}
             $isActive={item.id === expandedNewsId}
             onClick={() => onExpand(item.id)}
           >
             {item.title}
-          </NewsItem>
+          </NewsItemContainer>
         ))}
       </NewsList>
     </SidebarContainer>

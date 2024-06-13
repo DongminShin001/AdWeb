@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faChevronDown,
-  faChevronUp,
   faLink,
   faShareAlt,
+  faCaretUp,
+  faCaretDown,
 } from "@fortawesome/free-solid-svg-icons";
 
 const NewsItemContainer = styled.div`
@@ -109,7 +109,7 @@ const NewsItem = ({
         </>
       )}
       <IconsContainer>
-        <FontAwesomeIcon icon={isExpanded ? faChevronUp : faChevronDown} />
+        <FontAwesomeIcon icon={isExpanded ? faCaretUp : faCaretDown} />
         <FontAwesomeIcon
           icon={faLink}
           onClick={(e) => {
