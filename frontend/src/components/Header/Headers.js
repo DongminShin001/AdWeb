@@ -6,7 +6,7 @@ const HeaderContainer = styled.div`
   flex-direction: column;
   background-color: #141414;
   color: white;
-  padding: 10px 20px;
+  padding: 20px 20px;
 `;
 
 const TopSection = styled.div`

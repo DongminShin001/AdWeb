@@ -29,7 +29,7 @@ export const news = [
   },
 ];
 
-export const additionalNews = Array.from({ length: 70 }, (_, i) => ({
+export const additionalNews = Array.from({ length: 250 }, (_, i) => ({
   id: `${i + 4}`,
   title: `News Title ${i + 4}`,
   date: `Date ${i + 4}`,

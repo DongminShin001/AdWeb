@@ -27,12 +27,10 @@ const MainContent = ({ news, expandedNewsId, onExpand, refs }) => {
     if (expandedNewsId) {
       const ref = refs.current.main[expandedNewsId];
       if (ref) {
-        setTimeout(() => {
-          ref.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
-        }, 100);
+        ref.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
       }
     }
   }, [expandedNewsId, refs]);

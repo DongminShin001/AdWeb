@@ -23,25 +23,24 @@ function App() {
   const refs = useRef({ sidebar: {}, main: {} });
 
   const scrollToView = (id) => {
-    if (refs.current.sidebar[id]) {
-      refs.current.sidebar[id].scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-    if (refs.current.main[id]) {
-      refs.current.main[id].scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
+    setTimeout(() => {
+      if (refs.current.sidebar[id]) {
+        refs.current.sidebar[id].scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+      if (refs.current.main[id]) {
+        refs.current.main[id].scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }, 1000); // Adding a slight delay to ensure scroll execution
   };
 
   const handleExpand = (id) => {
     setExpandedNewsId(expandedNewsId === id ? null : id);
-    setTimeout(() => {
-      scrollToView(id);
-    }, 100); // Adding a slight delay to ensure scroll execution
   };
 
   useEffect(() => {
