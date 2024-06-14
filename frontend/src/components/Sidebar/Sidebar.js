@@ -4,11 +4,10 @@ import styled from "styled-components";
 const SidebarContainer = styled.div`
   background-color: #212121;
   color: white;
-  width: 250px;
-  padding: 0; /* Remove padding to remove gaps */
+  width: 350px;
+  padding: 0;
   position: sticky;
-  top: 0;
-  height: 100vh;
+  height: calc(100vh - 70px);
   overflow-y: auto;
 `;
 
@@ -19,29 +18,27 @@ const NewsList = styled.div`
 
 const NewsItemContainer = styled.div`
   cursor: pointer;
-  border-radius: 0; /* Remove border radius to remove gaps */
+  border-radius: 0;
   background-color: ${({ $isActive }) =>
-    $isActive ? "#ff5e62" : "transparent"}; /* New highlight color */
+    $isActive ? "#ff5e62" : "transparent"};
 
   &:hover {
-    background-color: #ff5e62; /* Highlight color on hover */
+    background-color: #ff5e62;
   }
 
   &:nth-child(odd) {
-    background-color: ${({ $isActive }) =>
-      $isActive ? "#ff5e62" : "#333"}; /* Dark grey for odd items */
+    background-color: ${({ $isActive }) => ($isActive ? "#ff5e62" : "#333")};
   }
 
   &:nth-child(even) {
-    background-color: ${({ $isActive }) =>
-      $isActive ? "#ff5e62" : "#2b2b2b"}; /* Light grey for even items */
+    background-color: ${({ $isActive }) => ($isActive ? "#ff5e62" : "#2b2b2b")};
   }
 `;
 
 const NewsTitle = styled.div`
   color: white;
   font-size: 16px;
-  padding: 10px; /* Adjust this value to change the padding inside the item */
+  padding: 10px;
 `;
 
 const Sidebar = ({ news, onExpand, expandedNewsId, refs }) => {
